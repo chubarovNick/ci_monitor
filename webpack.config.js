@@ -1,5 +1,7 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var autoprefixer = require('autoprefixer');
+var precss      = require('precss');
 
 var devFlagPlugin = new webpack.DefinePlugin({
   __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
@@ -23,13 +25,20 @@ module.exports = {
     devFlagPlugin,
     new ExtractTextPlugin('app.css')
   ],
+  postcss: function () {
+    return [autoprefixer, precss]
+  },
   module: {
     loaders: [
       { test: /\.js$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract('css-loader?module!cssnext-loader') }
+      { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader","css-loader!postcss-loader")},
+      {
+        test: /\.(otf|eot|png|svg|ttf|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader?limit=8192'
+      }
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.json']
+    extensions: ['', '.js', '.json', '.jsx']
   }
 };

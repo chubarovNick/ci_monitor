@@ -1,25 +1,23 @@
-import React from 'react';
-import {Provider} from 'react-redux';
-import configureStore from '../store/configureStore';
-import Home from '../components/Home';
-import {renderDevTools} from '../utils/devTools';
+import React, {Component} from 'react';
+import {AppBar, FlatButton, LeftNav} from 'material-ui';
+import {Link} from 'react-router';
+import injectTapEventPlugin from "react-tap-event-plugin"
+injectTapEventPlugin();
 
-const store = configureStore();
+React.initializeTouchEvents(true);
 
-export default React.createClass({
+
+class App extends Component {
   render() {
     return (
       <div>
-
-        {/* <Home /> is your app entry point */}
-        <Provider store={store}>
-          {() => <Home /> }
-        </Provider>
-
-        {/* only renders when running in DEV mode */
-          renderDevTools(store)
+        <AppBar  />
+        {
+          this.props.children
         }
       </div>
     );
   }
-});
+}
+
+export default App;

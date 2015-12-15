@@ -10,18 +10,17 @@ import ProviderAddModal from '../components/settings/ProviderAddModal';
 import Provider from '../components/settings/Provider';
 
 class Settings extends Component {
+
   render() {
     const {dispatch} = this.props;
     const actions = bindActionCreators(SettingsActions, dispatch);
 
-    console.log(this.props);
     const providers = this.props.providers.map(function(p){
-      return (<ListItem primaryText={ p.providerType }></ListItem>)
+      return (<ListItem primaryText={ p.providerType } rightToggle={<Icon name="remove" onClick={()=>actions.removeProvider(p)}/>}></ListItem>)
     });
 
-
     return (
-      <main>
+      <div className="settings">
         <ProviderAddModal/>
         <List subheader="Notification settings">
           <ListItem rightToggle={<Toggle/>} primaryText="Show build status notifications"/>
@@ -32,7 +31,7 @@ class Settings extends Component {
         </List>
         <FlatButton label="Add" onClick={()=> actions.showAddProviderModal()}>
         </FlatButton>
-      </main>
+      </div>
     );
   }
 }

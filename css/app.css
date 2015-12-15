@@ -1,5 +1,8 @@
-.text {
-  font-size: 2rem;
-  line-height: 1.5;
-  color: #FF0000cc;
+$container_width: 100%;
+
+.ci-monitor {
+  width: $container_width;
+}
+body{
+  margin: 0
 }

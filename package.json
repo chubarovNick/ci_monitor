@@ -1,14 +1,16 @@
 {
   "name": "ci_monitor",
   "version": "0.1.0",
+  "main": "index.js",
   "dependencies": {
     "babel-runtime": "^5.8.25",
+    "electron-prebuilt": "^0.33.7",
     "fbjs": "^0.2.1",
     "file-loader": "^0.8.4",
     "history": "^1.11.1",
     "isomorphic-fetch": "^2.1.1",
     "lodash": "^3.10.1",
-    "material-ui": "^0.12.1",
+    "material-ui": "^0.12.3",
     "normalizr": "^1.0.0",
     "react": "^0.13.3",
     "react-dom": "^0.14.0-rc1",
@@ -24,6 +26,7 @@
   },
   "scripts": {
     "start": "DEBUG=true node server.js",
+    "electron": "electron .",
     "build": "webpack -p"
   },
   "devDependencies": {
@@ -32,6 +35,9 @@
     "babel-loader": "^5.3.2",
     "css-loader": "^0.19.0",
     "cssnext-loader": "^1.0.1",
+    "electron-packager": "^5.1.0",
+    "electron-prebuilt": "^0.33.9",
+    "electron-rebuild": "^1.0.1",
     "extract-text-webpack-plugin": "^0.8.2",
     "jsx-loader": "^0.13.2",
     "postcss-loader": "^0.6.0",

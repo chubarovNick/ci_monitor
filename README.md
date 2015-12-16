@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/chubarovNick/ci_monitor.svg)](https://travis-ci.org/chubarovNick/ci_monitor)
 
 # ci_monitor (ci_monitor)
 

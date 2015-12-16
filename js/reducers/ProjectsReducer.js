@@ -2,8 +2,6 @@ import * as ActionTypes from '../constants/ActionTypes';
 
 
 export default function (state = {providers:{}, loading: false}, action) {
-  console.log(action);
-  console.log(state);
   switch (action.type){
     case ActionTypes.PROJECTS_LOADING:
       return {...state, loading: true};

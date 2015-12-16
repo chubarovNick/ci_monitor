@@ -1,5 +1,5 @@
 import {
-  PROVIDER_ADDED,
+  ADD_PROVIDER,
   SHOW_PROVIDER_ADD_MODAL,
   SELECT_PROVIDER,
   INPUT_API_KEY,
@@ -13,9 +13,11 @@ import SempahoreAdapter from '../utils/adapters/SemaphoreCiAdapter';
 
 export function addProvider(providerType, providerKey) {
   return {
-    type: PROVIDER_ADDED,
-    providerType: providerType,
-    providerKey: providerKey
+    type: ADD_PROVIDER,
+    provider: {
+      providerType,
+      providerKey
+    }
   }
 }
 
@@ -33,13 +35,13 @@ export function testRequest() {
 
 export function testRejected() {
   return {
-    type: TEST_ACCEPTED
+    type: TEST_REJECTED
   }
 }
 
 export function testAccepted() {
   return {
-    type: TEST_REJECTED
+    type: TEST_ACCEPTED
   }
 }
 

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as SettingsActions from '../../actions/SettingsActions';
-import {Dialog, Tabs, Tab, TextField} from 'material-ui';
+import { Dialog, Tabs, Tab, TextField } from 'material-ui';
 import Icon from 'react-fa';
 
 class ProviderAddModal extends Component {

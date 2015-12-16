@@ -27,10 +27,13 @@
   "scripts": {
     "start": "DEBUG=true node server.js",
     "electron": "electron .",
-    "build": "webpack -p"
+    "build": "webpack -p",
+    "test": "mocha --compilers js:babel/register  $(find js -name '*.spec.js')",
+    "test:watch": "npm test -- --watch"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
+    "babel": "^5.5.8",
     "babel-core": "^5.8.25",
     "babel-loader": "^5.3.2",
     "css-loader": "^0.19.0",
@@ -38,11 +41,15 @@
     "electron-packager": "^5.1.0",
     "electron-prebuilt": "^0.33.9",
     "electron-rebuild": "^1.0.1",
+    "expect.js": "^0.3.1",
     "extract-text-webpack-plugin": "^0.8.2",
     "jsx-loader": "^0.13.2",
+    "mocha": "^2.3.4",
+    "nock": "^3.4.0",
     "postcss-loader": "^0.6.0",
     "precss": "^1.2.3",
     "react-hot-loader": "^1.3.0",
+    "redux-mock-store": "0.0.3",
     "style-loader": "^0.12.4",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.0"

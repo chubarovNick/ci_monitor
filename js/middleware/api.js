@@ -1,5 +1,3 @@
-//import { Schema, arrayOf, normalize } from 'normalizr';
-
 export default store => next => action => {
   console.group(action.type);
   console.info('dispatching', action);

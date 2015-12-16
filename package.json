@@ -39,6 +39,7 @@
     "electron-packager": "^5.1.0",
     "electron-prebuilt": "^0.33.9",
     "electron-rebuild": "^1.0.1",
+    "nslog": "^3.0.0",
     "expect.js": "^0.3.1",
     "extract-text-webpack-plugin": "^0.8.2",
     "jsx-loader": "^0.13.2",

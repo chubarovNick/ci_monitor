@@ -3,7 +3,9 @@ import {
   PROJECTS_LOADED,
   PROJECTS_LOADING_FAILED,
   BRANCHES_LOADING,
-  BRANCHES_LOADED
+  BRANCHES_LOADED,
+  FAVOR_PROJECT,
+  UNFAVOR_PROJECT
 } from '../constants/ActionTypes';
 import SempahoreAdapter from '../utils/adapters/SemaphoreCiAdapter';
 import providerFactory from '../utils/providerFactory';
@@ -35,6 +37,20 @@ export function projectsLoaded(provider, projects){
   return {
     type: PROJECTS_LOADED,
     provider, projects
+  }
+}
+
+export function faviorProject(project){
+  return {
+    type: FAVOR_PROJECT,
+    project
+  }
+}
+
+export function unfavorPorject(project){
+  return {
+    type: UNFAVOR_PROJECT,
+    project
   }
 }
 

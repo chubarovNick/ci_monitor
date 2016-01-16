@@ -2,34 +2,36 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as ProjectsActions from '../actions/ProjectsActions';
-import {CircularProgress, FlatButton} from 'material-ui';
+import {LinearProgress, FlatButton} from 'material-ui';
 import ProjectList from '../components/projects/list';
 
+import ShowIf from '../components/ShowIf';
+
 class Projects extends Component {
+
   componentWillMount(){
     const {dispatch} = this.props;
     const actions = bindActionCreators(ProjectsActions, dispatch);
     actions.requestProjects(this.props.Settings);
   }
+  
   render() {
     const {dispatch} = this.props;
     const actions = bindActionCreators(ProjectsActions, dispatch);
 
-    var content;
-    if(this.props.Projects.loading){
-      content = (<CircularProgress mode="indeterminate"/>)
-    } else if(this.props.Projects.loading_failed) {
-      content = (
-        <div className="loading-failed">
-          <FlatButton label="Retry" onClick={()=>actionsrequestProjects(this.props.Settings)}></FlatButton>
-        </div>
-      )
-    } else {
-      content = (<ProjectList></ProjectList>)
-    }
     return (
       <main>
-        {content}
+        <ShowIf value={this.props.Projects.loading}>
+          <LinearProgress mode="indeterminate"/>
+        </ShowIf>
+        <ShowIf value={this.props.Projects.loading_failed}>
+          <div className="loading-failed">
+            <FlatButton label="Retry" onClick={()=>actionsrequestProjects(this.props.Settings)}></FlatButton>
+          </div>
+        </ShowIf>
+        <ShowIf value={!this.props.Projects.loading}>
+          <ProjectList/>
+        </ShowIf>
       </main>
     );
   }

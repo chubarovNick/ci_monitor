@@ -2,46 +2,55 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as SettingsActions from '../../actions/SettingsActions';
-import { Dialog, Tabs, Tab, TextField } from 'material-ui';
-import Icon from 'react-fa';
+
+import { Dialog, Tabs, Tab, TextField, FlatButton } from 'material-ui';
+import CircularProgress from 'material-ui/lib/circular-progress';
+
+import ShowIf from '../ShowIf';
 
 class ProviderAddModal extends Component {
+
+  changeApiKey(event){
+    const {dispatch} = this.props;
+    const actions = bindActionCreators(SettingsActions, dispatch);
+
+
+  }
+
   render(){
     const {dispatch} = this.props;
     const actions = bindActionCreators(SettingsActions, dispatch);
-    var modalUi;
 
-    if(this.props.show){
-      let valueLink= {
-        value: this.props.selectedProvider,
-        requestChange: (v)=> actions.selectProvider(v)
-      };
+    const dialogActions = [
+      <FlatButton label="Test" secondary={true} onTouchTap={()=> actions.testProvider(this.props.selectedProvider, this.props.apiKey)}/>,
+      <FlatButton label="Cancel" secondary={true} onTouchTap={()=> actions.cancelAddProvider()}/>,
+      <FlatButton label="Add" secondary={true} onTouchTap={()=> actions.addProvider(this.props.selectedProvider, this.props.apiKey)}/>
+    ];
 
-      var progressIndicator;
+    const handleApiKey = (event)=>{actions.changeApiKey(event.target.value)}
 
-      if(this.props.isTesting){
-        progressIndicator = (<Icon name="spinner" spin/>)
-      }
+    var error;
 
-      let standardActions = [
-        { text: 'Test', ref: 'test', onTouchTap: ()=> actions.testProvider(valueLink.value, this.props.apiKey) },
-        { text: 'Cancel', onTouchTap: ()=> actions.cancelAddProvider() },
-        { text: 'Add', disabled: true ,ref: 'submit', onTouchTap: ()=> actions.addProvider(valueLink.value, this.props.apiKey) }
-      ];
-      modalUi = (
-        <Dialog title="Select provider" actions={standardActions} openImmediately={true} ref="dialog">
-        <Tabs valueLink={valueLink}>
-          <Tab label="Semaphore" value="SEMAPHORE">
-            {progressIndicator}
-            <TextField hintText="Api Key" value={this.props.apiKey} onChange={(e)=> actions.changeApiKey(e.target.value)}/>
-          </Tab>
-          <Tab label="Circle CI" value="CIRCLE_CI">
-            <TextField hintText="Api Key" value={this.props.apiKey} onChange={(e)=> actions.changeApiKey(e.target.value)}/>
+    if(!this.props.testPassed){
+      error = 'Api key wrong'
+    }
+
+    return (
+      <ShowIf value={this.props.show}>
+      <Dialog title="Select provider" actions={dialogActions} modal={false} open={this.props.show} >
+        <Tabs value={this.props.selectedProvider} >
+          <Tab label="Semaphore" value="SEMAPHORE" onActive={()=>actions.selectProvider("SEMAPHORE")}>
+            <ShowIf value={this.props.isTesting}>
+              <CircularProgress mode="indeterminate" size={1}/>
+            </ShowIf>
+            <TextField hintText="Api Key" value={this.props.apiKey} onChange={handleApiKey} errorText={error}/>
+          </Tab >
+          <Tab label="Circle CI" value="CIRCLE_CI" onChange={()=> actions.selectProvider("CIRCLE_CI")}>
+            <TextField hintText="Api Key" value={this.props.apiKey} onChange={handleApiKey} errorText={error}/>
           </Tab>
         </Tabs>
-      </Dialog>)
-    }
-    return (<div>{modalUi}</div>);
+    </Dialog>
+    </ShowIf>);
   }
 }
 

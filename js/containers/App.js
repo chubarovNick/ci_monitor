@@ -3,23 +3,28 @@ import {AppBar, LeftNav, MenuItem} from 'material-ui';
 import injectTapEventPlugin from "react-tap-event-plugin"
 injectTapEventPlugin();
 
-React.initializeTouchEvents(true);
-
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {open: false};
+  }
+
   render() {
-    let menuItems = [
-      { route: '/home', text: 'Home' },
-      { route: '/projects', text: 'Projects' },
-      { route: '/settings', text: 'Settings' }
-    ];
+    let history = this.props.history;
+
+    let handleClick = (route)=>{
+      this.setState({open: false});
+      history.pushState(null, route)
+    };
+
     return (
       <div>
-        <AppBar  onLeftIconButtonTouchTap={()=> this.refs.leftNav.toggle()}/>
-        <LeftNav
-          ref="leftNav"
-          docked={false}
-          menuItems={menuItems}
-          onChange={(e,key, payload)=> this.props.history.pushState(null, payload.route)}/>
+        <AppBar  onLeftIconButtonTouchTap={()=>  this.setState({open: !this.state.open})}/>
+        <LeftNav ref="nav" docked={false} open={this.state.open}>
+          <MenuItem onTouchTap={()=>handleClick('/')}>Home</MenuItem>
+          <MenuItem onTouchTap={()=>handleClick('/projects')}>Projects</MenuItem>
+          <MenuItem onTouchTap={()=>handleClick('/settings')}>Settings</MenuItem>
+        </LeftNav>
         {
           this.props.children
         }

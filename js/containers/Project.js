@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as ProjectsActions from '../actions/ProjectsActions';
 import { List, ListItem, ListDivider, CircularProgress} from 'material-ui';
-import Icon from 'react-fa';
 
 class Project extends Component {
   componentWillMount(){

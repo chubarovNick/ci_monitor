@@ -1,19 +1,17 @@
-import {
-  ADD_PROVIDER,
-  SHOW_PROVIDER_ADD_MODAL,
-  SELECT_PROVIDER,
-  INPUT_API_KEY,
-  REMOVE_PROVIDER,
-  TEST_REQUEST,
-  TEST_REJECTED,
-  TEST_ACCEPTED,
-  CANCEL_ADD_PROVIDER
-  } from '../constants/ActionTypes';
+import * as ActionTypes from '../constants/ActionTypes';
 import SempahoreAdapter from '../utils/adapters/SemaphoreCiAdapter';
+
+export function toggleNotifcations(newValue){
+  return {
+    type: ActionTypes.TOGGLE_NOTIFICATIONS,
+    value: newValue
+  }
+
+}
 
 export function addProvider(providerType, providerKey) {
   return {
-    type: ADD_PROVIDER,
+    type: ActionTypes.ADD_PROVIDER,
     provider: {
       providerType,
       providerKey
@@ -23,25 +21,25 @@ export function addProvider(providerType, providerKey) {
 
 export function cancelAddProvider(){
   return {
-    type: CANCEL_ADD_PROVIDER
+    type: ActionTypes.CANCEL_ADD_PROVIDER
   }
 }
 
 export function testRequest() {
   return {
-    type: TEST_REQUEST
+    type: ActionTypes.TEST_REQUEST
   }
 }
 
 export function testRejected() {
   return {
-    type: TEST_REJECTED
+    type: ActionTypes.TEST_REJECTED
   }
 }
 
 export function testAccepted() {
   return {
-    type: TEST_ACCEPTED
+    type: ActionTypes.TEST_ACCEPTED
   }
 }
 
@@ -55,27 +53,27 @@ export function testProvider(providerType, providerKey) {
 
 export function showAddProviderModal() {
   return {
-    type: SHOW_PROVIDER_ADD_MODAL
+    type: ActionTypes.SHOW_PROVIDER_ADD_MODAL
   }
 }
 
 export function changeApiKey(apiKey) {
   return {
-    type: INPUT_API_KEY,
+    type: ActionTypes.INPUT_API_KEY,
     apiKey
   }
 }
 
 export function removeProvider(provider) {
   return {
-    type: REMOVE_PROVIDER,
+    type: ActionTypes.REMOVE_PROVIDER,
     providerKey: provider.providerKey
   }
 }
 
 export function selectProvider(providerType) {
   return {
-    type: SELECT_PROVIDER,
+    type: ActionTypes.SELECT_PROVIDER,
     providerType
   }
 }

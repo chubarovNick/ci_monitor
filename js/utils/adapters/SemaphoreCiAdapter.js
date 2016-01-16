@@ -3,7 +3,7 @@ import 'isomorphic-fetch';
 const BASE_URL ='https://semaphoreci.com';
 
 function projectMapper(project){
-  return {title: project.name}
+  return {title: project.name, id: project.id}
 }
 
 export default class SemaphoreCiAdapter {

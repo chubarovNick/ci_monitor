@@ -7,7 +7,8 @@ describe('SettingsReducers', () => {
     expect(
       reducer(undefined, {})
     ).to.eql({
-      providers: []
+      providers: [],
+      notificationsEnabled: false
     })
   });
 

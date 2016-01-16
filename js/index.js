@@ -1,6 +1,8 @@
 import React from 'react';
 import { Router, Route, Link } from 'react-router';
 import { Provider } from 'react-redux';
+import ReactDom from 'react-dom';
+import css from 'normalize.css';
 
 import App from './containers/App';
 import Settings from './containers/Settings';
@@ -18,11 +20,9 @@ const history = createBrowserHistory();
 
 history.pushState({},'/');
 
-React.render(
+ReactDom.render(
   <div className="ci-monitor">
     <Provider store={store}>
-      {
-        ()=>
           <Router history={history}>
             <Route path="/" component={App}>
               <Route path="home" name="home" component={Home}/>
@@ -32,11 +32,9 @@ React.render(
               </Route>
             </Route>
           </Router>
-      }
-
     </Provider>
     {/* only renders when running in DEV mode */
-      // renderDevTools(store)
+      renderDevTools(store)
     }
   </div>
 

@@ -1,12 +1,12 @@
 import * as ActionTypes from '../../constants/ActionTypes';
 
 
-export default function (state = {show: false, apiKey: '', selectedProvider: 'SEMAPHORE' }, action) {
+export default function (state = {show: false, apiKey: '', selectedProvider: 'SEMAPHORE', testPassed: true }, action) {
   switch (action.type){
     case ActionTypes.CANCEL_ADD_PROVIDER:
       return {...state, show: false, apiKey: ''}
     case ActionTypes.SHOW_PROVIDER_ADD_MODAL:
-      return {...state, show: true};
+      return {...state, show: true, testPassed: true, isTesting: false};
     case ActionTypes.SELECT_PROVIDER:
       return {...state, selectedProvider: action.providerType};
     case ActionTypes.PROVIDER_ADDED:

@@ -5,7 +5,7 @@ import expect from 'expect.js';
 describe('ProjectsReducer', ()=> {
 
   it('should have initial state', ()=> {
-    expect(reducer(undefined, {})).to.eql({loading: false, providers: {}});
+    expect(reducer(undefined, {})).to.eql({loading: false, providers: {},favoriteProjects: []});
   });
 
   it('should handle PROJECTS_LOADING', ()=> {

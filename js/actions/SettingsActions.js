@@ -1,7 +1,7 @@
-import * as ActionTypes from '../constants/ActionTypes';
-import SempahoreAdapter from '../utils/adapters/SemaphoreCiAdapter';
+import * as ActionTypes from '../constants/ActionTypes'
+import SempahoreAdapter from '../utils/adapters/SemaphoreCiAdapter'
 
-export function toggleNotifcations(newValue){
+export function toggleNotifcations(newValue) {
   return {
     type: ActionTypes.TOGGLE_NOTIFICATIONS,
     value: newValue
@@ -19,7 +19,7 @@ export function addProvider(providerType, providerKey) {
   }
 }
 
-export function cancelAddProvider(){
+export function cancelAddProvider() {
   return {
     type: ActionTypes.CANCEL_ADD_PROVIDER
   }
@@ -44,10 +44,10 @@ export function testAccepted() {
 }
 
 export function testProvider(providerType, providerKey) {
-  return (dispatch)=> {
-    dispatch(testRequest());
+  return (dispatch) => {
+    dispatch(testRequest())
     SempahoreAdapter.projects(providerKey)
-      .then(()=> dispatch(testAccepted()), ()=>dispatch(testRejected()))
+      .then(() => dispatch(testAccepted()), () => dispatch(testRejected()))
   }
 }
 

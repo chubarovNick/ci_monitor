@@ -1,2 +1,2 @@
-import component from './Settings';
-export default component;
+import component from './Settings'
+export default component

@@ -1,6 +1,6 @@
-import reducer from './SettingsReducers';
-import * as types from '../constants/ActionTypes';
-import expect from 'expect.js';
+import reducer from './SettingsReducers'
+import * as types from '../constants/ActionTypes'
+import expect from 'expect.js'
 
 describe('SettingsReducers', () => {
   it('should initial state', () => {
@@ -10,21 +10,21 @@ describe('SettingsReducers', () => {
       providers: [],
       notificationsEnabled: false
     })
-  });
+  })
 
   it('should handle REMOVE_PROVIDER', () => {
     expect(
       reducer({
-        providers: [{
+        providers: [ {
           type: 'SEMAPHORE',
           providerKey: 'xxx'
-          }]
+        } ]
       }, {
         type: types.REMOVE_PROVIDER,
         providerKey: 'xxx'
       })).to.eql({
-      providers: []
-    })
+        providers: []
+      })
   })
 
   it('should handle ADD_PROVIDER', () => {
@@ -36,7 +36,7 @@ describe('SettingsReducers', () => {
       providerType: 'SEMAPHORE'
     })).to.eql({
       show: false,
-      providers: [{providerKey: 'XXX', providerType: 'SEMAPHORE'}]
+      providers: [ { providerKey: 'XXX', providerType: 'SEMAPHORE' } ]
     })
   })
 })

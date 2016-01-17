@@ -1,71 +1,66 @@
-import {
-  PROJECTS_LOADING,
-  PROJECTS_LOADED,
-  PROJECTS_LOADING_FAILED,
-  BRANCHES_LOADING,
-  BRANCHES_LOADED,
-  FAVOR_PROJECT,
-  UNFAVOR_PROJECT
-} from '../constants/ActionTypes';
-import SempahoreAdapter from '../utils/adapters/SemaphoreCiAdapter';
-import providerFactory from '../utils/providerFactory';
+import * as ActionTypes from '../constants/ActionTypes'
+import providerFactory from '../utils/providerFactory'
 
-export function projectLoading(){
+export function projectLoading() {
   return {
-    type: PROJECTS_LOADING
+    type: ActionTypes.PROJECTS_LOADING
   }
 }
 
-export function branchesLoaded(branches){
+export function branchesLoaded(branches) {
   return {
-    type: BRANCHES_LOADED,
+    type: ActionTypes.BRANCHES_LOADED,
     branches
   }
 }
 
-export function loadBranches(provider, project){
-  return (dispatch)=>{
-    dispatch({type: BRANCHES_LOADING});
-    providerFactory.deduceProvider(provider.providerType)
-      .branches(provider.providerKey).then((response)=>{
-        return dispatch(branchesLoaded(response))
+export function loadBranches(provider, project) {
+  return (dispatch) => {
+    dispatch({
+      type: ActionTypes.BRANCHES_LOADING
     })
+
+    providerFactory.deduceProvider(provider.providerType)
+      .branches(provider.providerKey, project.id).then((response) => {
+        return dispatch(branchesLoaded(response))
+      })
   }
 }
 
-export function projectsLoaded(provider, projects){
+export function projectsLoaded(provider, projects) {
   return {
-    type: PROJECTS_LOADED,
-    provider, projects
+    type: ActionTypes.PROJECTS_LOADED,
+    provider,
+    projects
   }
 }
 
-export function faviorProject(project){
+export function faviorProject(project) {
   return {
-    type: FAVOR_PROJECT,
+    type: ActionTypes.FAVOR_PROJECT,
     project
   }
 }
 
-export function unfavorPorject(project){
+export function unfavorPorject(project) {
   return {
-    type: UNFAVOR_PROJECT,
+    type: ActionTypes.UNFAVOR_PROJECT,
     project
   }
 }
 
-export function projectLoadingFailed(){
+export function projectLoadingFailed() {
   return {
-    type: PROJECTS_LOADING_FAILED
+    type: ActionTypes.PROJECTS_LOADING_FAILED
   }
 }
 
-export function requestProjects(settings){
-  return (dispatch)=> {
-    dispatch(projectLoading());
-    settings.providers.forEach((p)=>{
-      providerFactory.deduceProvider(p.providerType).projects(p.providerKey).then((response)=>{
-        return dispatch(projectsLoaded(p,response))
+export function requestProjects(settings) {
+  return (dispatch) => {
+    dispatch(projectLoading())
+    settings.providers.forEach((p) => {
+      providerFactory.deduceProvider(p.providerType).projects(p.providerKey).then((response) => {
+        return dispatch(projectsLoaded(p, response))
       })
     })
   }

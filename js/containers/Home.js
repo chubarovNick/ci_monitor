@@ -1,10 +1,9 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {FlatButton} from 'material-ui';
-import {Link} from 'react-router';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+// import { bindActionCreators } from 'redux'
+import { Link } from 'react-router'
 
-import ShowIf from '../components/ShowIf';
+import ShowIf from '../components/ShowIf'
 
 /*
   Home component shows list of projects with latest builds which are marked as favorite
@@ -21,17 +20,16 @@ class Home extends Component {
           </div>
         </ShowIf>
         <ShowIf value={!(this.props.providers.length === 0)}>
-          
+
         </ShowIf>
       </main>
-    );
+    )
   }
 }
 
-function mapStateToProps(state){
-  const {Settings} = state;
-  const {Home} = state;
-  const {providers} = Settings;
+function mapStateToProps(state) {
+  const { Settings } = state
+  const { providers } = Settings
 
   return {
     providers

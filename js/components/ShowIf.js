@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 
 export default class ShowIf extends Component {
-  render(){
+  render() {
     return (
       <div>
         {

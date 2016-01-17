@@ -1,0 +1,24 @@
+{
+  "extends": "rackt",
+  "env":{
+    "mocha": true
+  },
+  "plugins": [
+    "react",
+    "import",
+    "mocha"
+  ],
+  "ecmaFeatures": {
+    "jsx": true
+  },
+  "rules": {
+    "valid-jsdoc": 2,
+    "no-var": 0,
+    "react/jsx-uses-react": 1,
+    "react/jsx-no-undef": 2,
+    "react/wrap-multilines": 2,
+    "import/no-unresolved": [2, {"commonjs": true}],
+    "import/namespace": 2,
+    "import/export": 2
+  }
+}

@@ -1,25 +1,23 @@
-import {createStore, applyMiddleware, combineReducers, compose} from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import * as reducers from '../reducers';
-import api from '../middleware/api';
-import localstorage from '../middleware/localstorage';
-import dataAdapters from '../middleware/datatAdapters';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import * as reducers from '../reducers'
+import localstorage from '../middleware/localstorage'
 
-let createStoreWithMiddleware;
+let createStoreWithMiddleware
 
 // Configure the dev tools when in DEV mode
 if (module.hot) {
-  const {devTools, persistState} = require('redux-devtools');
+  const { devTools } = require('redux-devtools')
   createStoreWithMiddleware = compose(
-    applyMiddleware(thunkMiddleware, localstorage, dataAdapters),
+    applyMiddleware(thunkMiddleware, localstorage),
     devTools()
-  )(createStore);
+  )(createStore)
 } else {
-  createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
+  createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore)
 }
 
-const rootReducer = combineReducers(reducers);
+const rootReducer = combineReducers(reducers)
 
 export default function configureStore(initialState) {
-  return createStoreWithMiddleware(rootReducer, initialState);
+  return createStoreWithMiddleware(rootReducer, initialState)
 }

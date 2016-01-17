@@ -1,19 +1,18 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as SettingsActions from '../../actions/SettingsActions';
-import {Toggle, List, ListItem, Divider, FlatButton, Dialog} from 'material-ui';
-import RemoveIcon from 'material-ui/lib/svg-icons/content/remove';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as SettingsActions from '../../actions/SettingsActions'
+import { Toggle, List, ListItem, Divider, FlatButton } from 'material-ui'
 
-import ProviderAddModal from '../../components/settings/ProviderAddModal';
+import ProviderAddModal from '../../components/settings/ProviderAddModal'
 
-import ProvidersList from '../../components/settings/ProvidersList';
+import ProvidersList from '../../components/settings/ProvidersList'
 
 export class Settings extends Component {
 
   render() {
-    const {dispatch} = this.props;
-    const actions = bindActionCreators(SettingsActions, dispatch);
+    const { dispatch } = this.props
+    const actions = bindActionCreators(SettingsActions, dispatch)
 
     return (
       <div className="settings">
@@ -27,13 +26,13 @@ export class Settings extends Component {
         <FlatButton label="Add" onClick={()=> actions.showAddProviderModal()}>
         </FlatButton>
       </div>
-    );
+    )
   }
 }
 
-function mapStateToProps(state){
-  const {providers, notificationsEnabled} = state.Settings;
-  return {providers, notificationsEnabled}
+function mapStateToProps(state) {
+  const { providers, notificationsEnabled } = state.Settings
+  return { providers, notificationsEnabled }
 }
 
 export default connect(mapStateToProps)(Settings)

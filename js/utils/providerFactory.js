@@ -1,4 +1,4 @@
-import SemaphoreCiAdapter from './adapters/SemaphoreCiAdapter';
+import SemaphoreCiAdapter from './adapters/SemaphoreCiAdapter'
 
 class ProviderFactory {
   static deduceProvider(providerType) {
@@ -11,4 +11,4 @@ class ProviderFactory {
   }
 }
 
-export default ProviderFactory;
+export default ProviderFactory

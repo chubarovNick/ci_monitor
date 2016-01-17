@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 
 class Provider extends Component {
-  render(){
+  render() {
     return(
       <div>
         {this.props.providerType}
@@ -10,4 +10,4 @@ class Provider extends Component {
   }
 }
 
-export default Provider;
+export default Provider
